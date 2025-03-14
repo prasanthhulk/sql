@@ -44,3 +44,22 @@ select l.city,count(*) from hr.employees e join hr.departments d on e.department
 SELECT department_id, COUNT(*) AS employees_with_commission FROM hr.employees WHERE commission_pct IS NOT NULL GROUP BY department_id;
 
 select department_id,sum(salary) from hr.employees where commission_pct is not null group by department_id;
+
+
+
+select prod_id,count(*) from sh.sales group by prod_id;
+-- count the productid using count
+select prod_id,avg(amount_sold) from sh.sales group by prod_id;
+-- average the productid with amount_sold using average 
+select prod_id,min(amount_sold),max(amount_sold) from sh.sales group by prod_id;
+-- lowest and highest value productid with amountsold using max and min
+select prod_id,sum(quantity_sold*amount_sold) from sh.sales group by prod_id;
+-- total revenue is quantity sold multiplis the amount sold with sum
+select cust_id,count(*) from sh.sales group by cust_id;
+-- count the transtions using count
+select cust_id,avg(amount_sold) from sh.sales group by cust_id;
+
+select cust_id,max(amount_sold) from sh.sales group by cust_id;
+
+select cust_id.min(amount_sold) from sh.sales group by cust_id;
+
