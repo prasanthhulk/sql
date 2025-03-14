@@ -63,3 +63,20 @@ select cust_id,max(amount_sold) from sh.sales group by cust_id;
 
 select cust_id.min(amount_sold) from sh.sales group by cust_id;
 
+
+
+
+select department_id,employee_id,salary ,rank() over (partition by department_id order by salary desc ) from hr.employees;
+
+select department_id,salary,employee_id,fun from (select department_id,employee_id,salary ,rank() over (partition by department_id order by salary desc) fun from hr.employees) where fun<=3 ;
+
+select department_id,salary,employee_id,fun from (select department_id,employee_id,salary,dense_rank() over (partition by department_id order by salary desc) fun from hr.employees) where fun=2;
+
+select employee_id,hire_date,salary,sum(salary) over (order by hire_date) from hr.employees ;
+
+select department_id,employee_id,row_number() over (partition by department_id order by employee_id) from hr.employees;
+
+select employee_id,salary,lead(salary) over (order by salary desc)-salary from hr.employees;
+
+SELECT employee_id, salary, hire_date, LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) AS prev_salary FROM hr.employees;
+ 
